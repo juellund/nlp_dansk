@@ -32,7 +32,7 @@ def read_pdfs(sti, tekster, newline=False):
   for file in files:
     if file in tekster:
       pdf = open(sti + '/' + file, 'rb')
-      read_pdf = PyPDF2.PdfFileReader(pdf)
+      read_pdf = PyPDF2.PdfReader(pdf)
       tekst = []
       for page in range(read_pdf.getNumPages()):
         tekst.append(read_pdf.getPage(page).extractText())
