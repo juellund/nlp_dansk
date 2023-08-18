@@ -35,7 +35,7 @@ def read_pdfs(sti, tekster, newline=False):
       read_pdf = pypdf.PdfReader(pdf)
       tekst = []
       for page in range(len(read_pdf.pages)):
-        tekst.append(read_pdf.getPage(page).extractText())
+        tekst.append(read_pdf.pages[page].extractText())
       alle_tekster.extend(tekst)
   tekst_raw = ''
   for side in alle_tekster:
