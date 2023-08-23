@@ -23,7 +23,7 @@ nltk.download('punkt')
 def tekst_af_pdf(mappe, dokumentnavn):
   pdf_dokument = open(mappe+'/'+dokumentnavn, 'rb')
   pdf_laeser = pypdf.PdfReader(pdf_dokument)
-  tekst = ""
+  tekst = ''
   sider = pdf_laeser.pages
   antal_sider = len(sider)
   for sidenummer in range(antal_sider):
