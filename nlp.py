@@ -32,7 +32,7 @@ def tekst_af_pdf(mappe, dokumentnavn):
     tekst = tekst + sidetekst
   return tekst
   
-def read_pdfs(sti, tekster, newline=False):
+def tekst_af_pdfer(sti, tekster, newline=False):
   """Read a PDF-file and return it as a string.
 
   Keywords arguments:
@@ -253,12 +253,12 @@ def chi_square_method(candidate_sti, candidate_tekster, candidate_regex_terms, b
   base_tekster -- a list of PDF-names for the base texts
   base_regex_terms -- a list of regex for the base texts
   """
-  candidate = read_pdfs(candidate_sti, candidate_tekster)
+  candidate = tekst_af_pdfer(candidate_sti, candidate_tekster)
   candiate = normalizer(candidate, candidate_regex_terms)
   candidate = nltk.word_tokenize(candidate, language='danish')
   candidate = ([token for token in candidate if any(c.isalpha() for c in token)])
   candidate = ([token.lower() for token in candidate])
-  base = read_pdfs(base_sti, base_tekster)
+  base = tekst_af_pdfer(base_sti, base_tekster)
   base = normalizer(base, base_regex_terms)
   base = nltk.word_tokenize(base, language='danish')
   base = ([token for token in base if any(c.isalpha() for c in token)])
