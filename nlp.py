@@ -20,6 +20,18 @@ plt.rcParams["figure.figsize"] = (15,7.5)
 nltk.download('stopwords')
 nltk.download('punkt')
 
+def tekst_af_pdf(mappe, dokumentnavn):
+  pdf_dokument = open(mappe+'/'+dokumentnavn, 'rb')
+  pdf_laeser = pypdf.PdfReader(pdf_dokument)
+  tekst = ""
+  sider = pdf_laeser.pages
+  antal_sider = len(sider)
+  for sidenummer in range(antal_sider):
+    side = sider[sidenummer]
+    sidetekst = side.extract_text()
+    tekst = tekst + sidetekst
+  return tekst
+  
 def read_pdfs(sti, tekster, newline=False):
   """Read a PDF-file and return it as a string.
 
@@ -31,11 +43,7 @@ def read_pdfs(sti, tekster, newline=False):
   alle_tekster = []
   for file in files:
     if file in tekster:
-      pdf = open(sti + '/' + file, 'rb')
-      read_pdf = pypdf.PdfReader(pdf)
-      tekst = []
-      for page in range(len(read_pdf.pages)):
-        tekst.append(read_pdf.pages[page].extract_text())
+      tekst = tekst_af_pdf(sti, file)
       alle_tekster.extend(tekst)
   tekst_raw = ''
   for side in alle_tekster:
